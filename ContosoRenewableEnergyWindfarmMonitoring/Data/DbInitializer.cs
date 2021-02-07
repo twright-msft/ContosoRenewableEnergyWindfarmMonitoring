@@ -36,6 +36,7 @@ namespace ContosoRenewableEnergyWindfarmMonitoring.Data
             }
 
             // Look for any samples.
+            /*
             if (!context.TurbineTelemetrySamples.Any())
             {
                 // DB has not been seeded
@@ -53,6 +54,7 @@ namespace ContosoRenewableEnergyWindfarmMonitoring.Data
                     }
                 }
             }
+            */
             context.SaveChanges();
 
 
