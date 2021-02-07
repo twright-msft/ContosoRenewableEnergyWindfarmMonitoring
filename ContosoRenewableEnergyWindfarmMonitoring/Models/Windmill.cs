@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,8 @@ namespace ContosoRenewableEnergyWindfarmMonitoring.Models
         public int ID { get; set; }
         public string Model { get; set; }
         public string Manufacturer { get; set; }
+
+        [Display(Name = "Date of Last Maintenance")]
         public DateTime DateOfLastMaintenance { get; set; }
 
         public ICollection<Blade> Blades { get; set; }
