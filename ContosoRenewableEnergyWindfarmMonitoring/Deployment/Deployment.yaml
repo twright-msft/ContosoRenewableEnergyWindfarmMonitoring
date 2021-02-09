@@ -1,0 +1,51 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    app: web
+spec:
+  containers:
+    - name: web
+      image: haikuhack.azurecr.io/contosorenewableenergywindfarmmonitoring:test2
+      ports:
+        - name: frontend
+          containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appservice
+spec:
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Secret
+data:
+  password: YXJjYWRtaW4=
+  username: WXVrb245MDA=
+
+metadata:
+  name: db-login-secret
+type: Opaque
+---
+apiVersion: sql.arcdata.microsoft.com/v1alpha1
+kind: sqlmanagedinstance
+metadata:
+  name: db
+spec:
+  service:
+    type: LoadBalancer
+  storage:
+    data:
+      className: default
+      size: 5Gi
+    logs:
+      className: default
+      size: 1Gi
