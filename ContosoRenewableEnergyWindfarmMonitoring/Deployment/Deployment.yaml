@@ -2,6 +2,7 @@
 kind: Pod
 metadata:
   name: app
+  namespace: arc
   labels:
     app: web
 spec:
@@ -17,6 +18,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: appservice
+  namespace: arc
 spec:
   selector:
     app: web
@@ -27,18 +29,19 @@ spec:
 ---
 apiVersion: v1
 kind: Secret
+metadata:
+  name: db-login-secret
+  namespace: arc
 data:
   password: YXJjYWRtaW4=
   username: WXVrb245MDA=
-
-metadata:
-  name: db-login-secret
 type: Opaque
 ---
 apiVersion: sql.arcdata.microsoft.com/v1alpha1
 kind: sqlmanagedinstance
 metadata:
   name: db
+  namespace: arc
 spec:
   service:
     type: LoadBalancer
