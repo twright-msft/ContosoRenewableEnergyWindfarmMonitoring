@@ -36,6 +36,7 @@ namespace ContosoRenewableEnergyWindfarmMonitoring.Data
             }
 
             // Look for any samples.
+            /* Commenting this out for now as we will not be doing the ML demo at Ignite
             if (!context.TurbineTelemetrySamples.Any())
             {
                 // DB has not been seeded
@@ -47,15 +48,18 @@ namespace ContosoRenewableEnergyWindfarmMonitoring.Data
                 {
                     using (StreamReader reader = new StreamReader(stream))
                     {
+                        //TODO: The csvReader cant convert.
+                        //Error: "Unable to cast object of type 'System.IO.StreamReader' to type 'CsvHelper.IParser'."
                         CsvReader csvReader = new CsvReader((IParser)reader);
-                        var samples = csvReader.GetRecords<TurbineTelemetrySample>().ToArray();
+                        //Skip the first row since it has a header row
+                        var samples = csvReader.GetRecords<TurbineTelemetrySample>().ToArray().Skip<TurbineTelemetrySample>(1);
                         context.TurbineTelemetrySamples.AddRange(samples);
                     }
                 }
             }
+            */
+
             context.SaveChanges();
-
-
         }
     }
 }
