@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: web
-      image: contosorenewable.azurecr.io/contosorenewableenergywindfarmmonitoring:test3
+      image: haikuhack.azurecr.io/contosorenewableenergywindfarmmonitoring:test3
       ports:
         - name: frontend
           containerPort: 80
