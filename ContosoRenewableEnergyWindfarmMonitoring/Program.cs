@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ContosoRenewableEnergyWindfarmMonitoring
 {
@@ -30,7 +31,8 @@ namespace ContosoRenewableEnergyWindfarmMonitoring
                 try
                 {
                     var context = services.GetRequiredService<WindFarmContext>();
-                    DbInitializer.Initialize(context);
+                    //Retry connecting to the database instance in case it is not available at the time the app is provisioned
+                    Retry.Do(() => DbInitializer.Initialize(context), TimeSpan.FromSeconds(3), 120);
                 }
                 catch (Exception ex)
                 {

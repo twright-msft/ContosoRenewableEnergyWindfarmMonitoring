@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: web
-      image: haikuhack.azurecr.io/contosorenewableenergywindfarmmonitoring:test3
+      image: haikuhack.azurecr.io/contosorenewableenergywindfarmmonitoring:test9
       ports:
         - name: frontend
           containerPort: 80
@@ -33,8 +33,8 @@ metadata:
   name: db-login-secret
   namespace: arc
 data:
-  password: YXJjYWRtaW4=
-  username: WXVrb245MDA=
+  password: WXVrb245MDA=
+  username: YXJjYWRtaW4=
 type: Opaque
 ---
 apiVersion: sql.arcdata.microsoft.com/v1alpha1
